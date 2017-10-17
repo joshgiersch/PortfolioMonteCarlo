@@ -26,6 +26,7 @@ starting_price = 100
 number_of_sims = 1000
 days_to_simulate = 3650
 cash_rate = 0.01125
+percentage_in_stock = 0.8
 
 ES3_return = 0.06
 ES3_vol = 0.105
@@ -46,7 +47,7 @@ for i in range(number_of_sims):
     #100% in a 70-30 - what percentage of the time does it beat cash?
     #100% in a 60-40 - what percentage of the time does it beat cash? ... etc etc.
     #for starters: just do the 100%-in-a-70-30
-    if (0.8 * stock_returns[i][-1] + 0.2 * bond_returns[i][-1]) > cash_return:
+    if (percentage_in_stock * stock_returns[i][-1] + (1-percentage_in_stock) * bond_returns[i][-1]) > cash_return:
         n += 1
 
 print(n/number_of_sims)
